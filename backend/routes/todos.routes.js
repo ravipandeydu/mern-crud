@@ -8,8 +8,7 @@ const {TodoModel} = require("../models/Todo.model")
 const todosController = Router();
 
 todosController.get("/", async (req, res) => {
-    const {tag} = req.query
-    const todos = await TodoModel.find({userId : req.body.userId, tag})
+    const todos = await TodoModel.find({userId : req.body.userId})
     res.send(todos)
 })
 
