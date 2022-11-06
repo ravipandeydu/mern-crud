@@ -1,15 +1,33 @@
-const express = require("express");
+const express = require("express")
+const cors = require("cors")
+const {userController} = require("./routes/user.routes")
+const {todosController} = require("./routes/todos.routes")
+const {connection} = require("./config/db")
+const {authentication} = require("./middleware/auth.middleware")
 
 const app = express();
+const PORT = 8080
 
-app.get("/", (req, res)=>{
-    res.send("Home Page")
+app.use(express.json())
+
+app.get("/", (req, res) => {
+    res.send("Home page")
 })
 
-app.get("/about", (req, res)=>{
-    res.send("About page")
-})
+app.use(cors())
 
-app.listen(8070, ()=>{
-    console.log("listening to Port 8070")
+app.use("/user", userController)
+app.use(authentication)
+app.use("/todos", todosController)
+
+app.listen(PORT, async () => {
+    try{
+        await connection;
+        console.log("Connected to db")
+    }
+    catch(err){
+        console.log("Error connnecting to DB")
+        console.log(err)
+    }
+    console.log(`listening on PORT ${PORT}`)
 })
