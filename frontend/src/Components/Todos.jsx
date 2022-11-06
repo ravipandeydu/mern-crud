@@ -4,7 +4,7 @@ function Todos(){
     const [todos, setTodos] = useState([])
     const token = localStorage.getItem("token")
     const getData = () => {
-        fetch("https://mern-crud-lx3w.onrender.com/notes", {
+        fetch("https://mern-crud-lx3w.onrender.com/todos", {
             method : "GET",
             headers : {
                 'Authorization' : `Bearer ${token}`

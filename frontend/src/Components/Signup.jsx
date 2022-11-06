@@ -10,7 +10,7 @@ function Signup(){
             password
         }
 
-        fetch("https://mern-crud-lx3w.onrender.com/signup",{
+        fetch("https://mern-crud-lx3w.onrender.com/user/signup",{
             method : "POST",
             headers: {
                 'Content-Type': 'application/json',
